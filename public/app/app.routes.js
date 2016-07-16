@@ -15,6 +15,13 @@ angular.module('app.routes', ['ngRoute'])
 		controllerAs: 'login'
 	})
 
+	// register page
+	.when('/register', {
+		templateUrl: 'app/views/pages/register.html',
+		controller: 'mainController',
+		controllerAs: 'register'
+	})
+
 	// show all users
 	.when('/users', {
 		templateUrl: 'app/views/pages/users/all.html',

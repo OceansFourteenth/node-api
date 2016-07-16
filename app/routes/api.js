@@ -58,6 +58,24 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// route to register
+	apiRouter.post('/register', function(req, res) {
+		var user = new User();
+		
+		user.name = req.body.name;
+		user.username = req.body.username;
+		user.password = req.body.password;
+		
+		user.save(function(err) {
+			if (err) res.send(err);
+			
+			res.json({ 
+				success: true,
+				message: 'Registration successful!' 
+			});
+		});
+	});
+	
 	// route middleware to verify a token
 	apiRouter.use(function(req, res, next) {
 		// do logging
@@ -119,7 +137,7 @@ module.exports = function(app, express) {
 
 		// save the user and check for errors
 		user.save(function(err) {
-			if (err) res.send(err);
+			if (err) return res.send(err);
 
 			// return a message
 			res.json({ message: 'User created!' });

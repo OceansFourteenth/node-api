@@ -11,6 +11,18 @@ angular.module('authService', [])
 	// create auth factory object
 	var authFactory = {};
 	
+	// register a user
+	authFactory.register = function(name, username, password) {
+		return $http.post('/api/register', {
+			name: name,
+			username: username,
+			password: password
+		})
+		.then(function(success) {
+			return success;
+		});
+	};
+	
 	// log a user in
 	authFactory.login = function(username, password) {
 		
@@ -21,7 +33,7 @@ angular.module('authService', [])
 		})
 		.then(function(success) {
 			AuthToken.setToken(success.data.token);
-			return success.data;
+			return success;
 		});
 	};
 	

@@ -45,4 +45,29 @@ angular.module('mainCtrl', [])
 		vm.user = {};
 		$location.path('/login');
 	};
+	
+	// function to handle register form
+	vm.doRegister = function() {
+		vm.processing = true;
+		
+		vm.error = '';
+		
+		if (vm.registerData.password !== vm.registerData.password2) {
+			vm.error = 'Passwords must match to continue.';
+			vm.processing = false;
+			return;
+		}
+		
+		// call the Auth.register() function
+		Auth.register(vm.registerData.name, vm.registerData.username, vm.registerData.password)
+		.then(function(success) {
+			vm.processing = false;
+			
+			// if a user successfully registers
+			if(success.data.success) 
+				$location.path('/login');
+			else
+				vm.error = success.data.message;
+		});
+	};
 });

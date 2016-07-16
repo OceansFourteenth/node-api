@@ -64,7 +64,7 @@ angular.module('userCtrl', ['userService'])
 			vm.processing = false;
 			
 			// clear the form
-			// vm.userData = {};
+			vm.userData = {};
 			vm.message = success.data.message;
 		});
 	};
