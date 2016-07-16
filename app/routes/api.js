@@ -18,7 +18,7 @@ module.exports = function(app, express) {
 		// select the password explicitly since mongoose is not returning it by default
 		User.findOne({
 			username: req.body.username,
-		}).select('password').exec(function(err, user) {
+		}).select('name username password').exec(function(err, user) {
 			if (err) throw err;
 
 			// no user with that username was found
@@ -44,7 +44,7 @@ module.exports = function(app, express) {
 						name: user.name,
 						username: user.username
 					}, superSecret, {
-						expiresIn: "24h" // expires in 24 hours
+						expiresIn: '24h' // expires in 24 hours
 					});
 
 					// return the information including token as JSON
@@ -190,6 +190,7 @@ module.exports = function(app, express) {
 		});
 	});
 
+	// api endpoint to get user information
 	apiRouter.get('/me', function(req, res) {
 		res.send(req.decoded);
 	});

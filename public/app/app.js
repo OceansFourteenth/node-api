@@ -1,35 +1,15 @@
-angular.module('routerApp', ['routerRoutes', 'ngAnimate'])
+angular.module('userApp', [
+	'ngAnimate', 
+	'app.routes',
+	'authService',
+	'mainCtrl',
+	'userCtrl',
+	'userService'
+])
 
-// create the controllers
-// this will be the controller for the ENTIRE site
-.controller('mainController', function() {
+// application configuration to integrate token into requests
+.config(function($httpProvider) {
 	
-	var vm = this;
-	
-	// create a bigMessage variable to display in our view
-	vm.bigMessage = 'A smooth sea never made a skilled sailor.';
-})
-
-// home page specific controller
-.controller('homeController', function() {
-	
-	var vm = this;
-	
-	vm.message = 'This is the home page!';
-})
-
-// about page specific controller
-.controller('aboutController', function() {
-	
-	var vm = this;
-	
-	vm.message = 'Look! I am an about page.';
-})
-
-// contact page controller
-.controller('contactController', function() {
-	
-	var vm = this;
-	
-	vm.message = 'Contact us! JK. This is just a demo.';
+	// attach our auth interceptor to the http requests
+	$httpProvider.interceptors.push('AuthInterceptor');
 });

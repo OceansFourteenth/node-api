@@ -1,24 +1,33 @@
-body {
-	padding: 50px;
+main {
+	padding-top: 30px;
 }
 
-#content-views {
-	position: relative;
+/* HEADER 
+============================= */
+header .navbar {
+	border-radius: 0;
 }
 
-.ng-enter, .ng-leave {
-	width:100%;
-	position: absolute;
+/* ANIMATIONS
+============================= */
+.spinner {
+	display: inline-block;
+	animation:spin 1s infinite;
+	-webkit-animation:spin 1s infinite;
+	-moz-animation:spin 1s infinite;
 }
 
-.ng-enter {
-	-webkit-animation: zoomInDown 1.2s both ease-in;
-	-moz-animation: zoomInDown 1.2s both ease-in;
-	animation: zoomInDown 1.2s both ease-in;
+@keyframes spin {
+	from { transform:rotate(0deg); }
+	to { transform:rotate(360deg); }
 }
 
-.ng-leave {
-	-webkit-animation: zoomOutDown 0.5s both ease-in;
-	-moz-animation: zoomOutDown 0.5s both ease-in;
-	animation: zoomOutDown 0.5s both ease-in;
+@-webkit-keyframes spin {
+	-webkit-from { transform:rotate(0deg); }
+	-webkit-to { transform:rotate(360deg); }
+}
+
+@-moz-keyframes spin {
+	-moz-from { transform:rotate(0deg); }
+	-moz-to { transform:rotate(360deg); }
 }
