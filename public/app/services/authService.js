@@ -19,9 +19,9 @@ angular.module('authService', [])
 			username: username,
 			password: password
 		})
-		.success(function(data) {
-			AuthToken.setToken(data.token);
-			return data;
+		.then(function(success) {
+			AuthToken.setToken(success.data.token);
+			return success.data;
 		});
 	};
 	

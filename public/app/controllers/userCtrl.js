@@ -12,13 +12,13 @@ angular.module('userCtrl', ['userService'])
 	
 	// grab all the users at page load
 	User.all()
-	.success(function(data) {
+	.then(function(success) {
 		
 		// when all the users come back, remove the processing variable
 		vm.processing = false;
 		
 		// bind the users that come back to vm.users
-		vm.users = data;
+		vm.users = success.data;
 	});
 	
 	// function to delete a user
@@ -27,15 +27,15 @@ angular.module('userCtrl', ['userService'])
 		
 		// accepts the user id as a parameter
 		User.delete(id)
-		.success(function(data) {
+		.then(function(success) {
 			
 			// get all users to update the table
 			// you can also set up your api 
 			// to return the list of users with the delete call
 			User.all()
-			.success(function(data) {
+			.then(function(success) {
 				vm.processing = false;
-				vm.users = data;
+				vm.users = success.data;
 			});
 		});
 	};
@@ -60,12 +60,12 @@ angular.module('userCtrl', ['userService'])
 		
 		// use the create function in the userService
 		User.create(vm.userData)
-		.success(function(data) {
+		.then(function(success) {
 			vm.processing = false;
 			
 			// clear the form
-			vm.userData = {};
-			vm.message = data.message;
+			// vm.userData = {};
+			vm.message = success.data.message;
 		});
 	};
 })
@@ -82,8 +82,8 @@ angular.module('userCtrl', ['userService'])
 	// get the user data for the user you want to edit
 	// $routeParams is the way we grab data from the URL
 	User.get($routeParams.user_id)
-	.success(function(data) {
-		vm.userData = data;
+	.then(function(success) { // success
+		vm.userData = success.data;
 	});
 	
 	// function to save the user
@@ -93,14 +93,14 @@ angular.module('userCtrl', ['userService'])
 		
 		// call the userService function to update
 		User.update($routeParams.user_id, vm.userData)
-		.success(function(data) {
+		.then(function(success) { // success
 			vm.processing = false;
 			
 			// clear the form
 			// vm.userData = {};
 			
 			// bind the message from our API to vm.message
-			vm.message = data.message;
+			vm.message = success.data.message;
 		});
 	};
 });
