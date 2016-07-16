@@ -1,9 +1,9 @@
 <div class="page-header">
-	<h1 ng-if="user.type == 'create'">Create</h1>
-	<h1 ng-if="user.type == 'edit'">Edit</h1>
+	<h1 ng-if="user.type == 'create'">Create User</h1>
+	<h1 ng-if="user.type == 'edit'">Edit User</h1>
 </div>
 
-<form class="from-horizontal" ng-submit="user.saveUser()">
+<form class="form-horizontal" ng-submit="user.saveUser()">
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-6">
@@ -21,7 +21,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Password</label>
 		<div class="col-sm-6">
-			<input type="password" class="form-control" ng-model="user.userData.username" />
+			<input type="password" class="form-control" ng-model="user.userData.password" />
 		</div>
 	</div>
 	
@@ -33,7 +33,7 @@
 	</div>
 </form>
 
-<div class="row show-hide message ng-show="user.message">
+<div class="row show-hide-message" ng-show="user.message">
 	<div class="col-sm-6 col-sm-offset-2">
 		<div class="alert alert-info">
 			{{ user.message }}
